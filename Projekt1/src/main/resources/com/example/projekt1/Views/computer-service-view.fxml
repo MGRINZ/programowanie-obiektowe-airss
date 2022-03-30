@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<GridPane hgap="10" vgap="10" stylesheets="@../CSS/common.css">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" />
+        <ColumnConstraints hgrow="SOMETIMES" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER" />
+        <RowConstraints vgrow="ALWAYS" />
+    </rowConstraints>
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+    <Label text="Zlecenia" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+    <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <placeholder>
+            <Label/>
+        </placeholder>
+        <columns>
+            <TableColumn text="Numer zlecenia" />
+            <TableColumn text="Klient" />
+            <TableColumn text="Urządzenie" />
+            <TableColumn text="Problem" />
+            <TableColumn text="Serwisant" />
+            <TableColumn text="Data przyjęcia" />
+            <TableColumn text="Data wydania" />
+            <TableColumn text="Status" />
+        </columns>
+    </TableView>
+    <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="5">
+        <Button text="Dodaj..." />
+        <Button text="Edytuj..."  />
+        <Button text="Usuń"  />
+    </VBox>
+</GridPane>
