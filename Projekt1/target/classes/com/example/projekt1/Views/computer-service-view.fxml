@@ -13,7 +13,10 @@
 
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
-<GridPane hgap="10" vgap="10" stylesheets="@../CSS/common.css">
+<GridPane
+        xmlns:fx="http://javafx.com/fxml"
+        hgap="10" vgap="10" stylesheets="@../CSS/common.css"
+        fx:controller="com.example.projekt1.Controllers.ComputerServiceController">
     <columnConstraints>
         <ColumnConstraints hgrow="ALWAYS" />
         <ColumnConstraints hgrow="SOMETIMES" />
@@ -26,19 +29,19 @@
         <Insets topRightBottomLeft="10" />
     </padding>
     <Label text="Zlecenia" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-    <TableView GridPane.columnIndex="0" GridPane.rowIndex="1">
+    <TableView GridPane.columnIndex="0" GridPane.rowIndex="1" fx:id="orderTable">
         <placeholder>
             <Label/>
         </placeholder>
         <columns>
-            <TableColumn text="Numer zlecenia" />
-            <TableColumn text="Klient" />
-            <TableColumn text="Urządzenie" />
-            <TableColumn text="Problem" />
-            <TableColumn text="Serwisant" />
-            <TableColumn text="Data przyjęcia" />
-            <TableColumn text="Data wydania" />
-            <TableColumn text="Status" />
+            <TableColumn text="Numer zlecenia" fx:id="number" />
+            <TableColumn text="Klient" fx:id="client" />
+            <TableColumn text="Urządzenie" fx:id="device" />
+            <TableColumn text="Problem" fx:id="problem" />
+            <TableColumn text="Serwisant" fx:id="maintainer" />
+            <TableColumn text="Data przyjęcia" fx:id="dateIn" />
+            <TableColumn text="Data wydania" fx:id="dateOut" />
+            <TableColumn text="Status" fx:id="status" />
         </columns>
     </TableView>
     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="5">
@@ -47,13 +50,3 @@
         <Button text="Usuń"  />
     </VBox>
 </GridPane>
-
-<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
-<!--      fx:controller="com.example.projekt1.HelloController">-->
-<!--    <padding>-->
-<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
-<!--    </padding>-->
-
-<!--    <Label fx:id="welcomeText"/>-->
-<!--    <Button text="Hello!" onAction="#onHelloButtonClick"/>-->
-<!--</VBox>-->

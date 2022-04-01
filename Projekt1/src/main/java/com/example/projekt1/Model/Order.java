@@ -12,7 +12,7 @@ public class Order {
     private Maintainer maintainer;
     private final Date dateIn;
     private Date dateOut;
-    private int status;
+    private OrderStatus status;
 
     public Order(Client client, Device device, String problem) {
         this(client, device, problem, new Date());
@@ -24,6 +24,7 @@ public class Order {
         this.device = device;
         this.problem = problem;
         this.dateIn = dateIn;
+        this.status = OrderStatus.IN;
     }
 
     private static int getNextNumber() {
@@ -34,11 +35,11 @@ public class Order {
         this.maintainer = maintainer;
     }
 
-    public int getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

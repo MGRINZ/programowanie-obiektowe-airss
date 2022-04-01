@@ -8,4 +8,14 @@ public abstract class Device {
         this.manufacturer = manufacturer;
         this.model = model;
     }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public abstract String getDeviceType();
 }
