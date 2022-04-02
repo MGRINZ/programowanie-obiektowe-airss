@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.CheckBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.layout.RowConstraints?>
+<VBox
+        xmlns:fx="http://javafx.com/fxml"
+        stylesheets="@../CSS/common.css"
+        fx:controller="com.example.projekt1.Controllers.EditOrderController"
+        spacing="5">
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+
+    <GridPane hgap="10" vgap="5" fx:id="orderGrid">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+
+        <Label GridPane.rowIndex="0" text="Imię klienta" />
+        <TextField GridPane.rowIndex="0" GridPane.columnIndex="1" fx:id="clientFirstName" />
+        <Label GridPane.rowIndex="1" text="Nazwisko klienta" />
+        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="clientLastName" />
+        <Label GridPane.rowIndex="2" text="Telefon klienta" />
+        <TextField GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="phoneNumber" />
+        <Label GridPane.rowIndex="3" text="Urządzenie" />
+        <Label GridPane.rowIndex="3" GridPane.columnIndex="1" fx:id="deviceLabel" />
+        <Label GridPane.rowIndex="4" text="Producent" />
+        <TextField GridPane.rowIndex="4" GridPane.columnIndex="1" fx:id="manufacturer" />
+        <Label GridPane.rowIndex="5" text="Model" />
+        <TextField GridPane.rowIndex="5" GridPane.columnIndex="1" fx:id="model" />
+
+        <Label GridPane.rowIndex="6" text="System" fx:id="osLabel" />
+        <TextField GridPane.rowIndex="6" GridPane.columnIndex="1" fx:id="os" />
+        <Label GridPane.rowIndex="7" text="Można formatować?" fx:id="formatAllowedLabel" />
+        <CheckBox GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="formatAllowed" />
+        <Label GridPane.rowIndex="8" text="Rodzaj" fx:id="typeLabel" />
+        <TextField GridPane.rowIndex="8" GridPane.columnIndex="1" fx:id="type" />
+
+        <Label GridPane.rowIndex="9" text="Problem" />
+        <TextField GridPane.rowIndex="9" GridPane.columnIndex="1" fx:id="problem" />
+        <Label GridPane.rowIndex="10" text="Serwisant" />
+        <ComboBox GridPane.rowIndex="10" GridPane.columnIndex="1" fx:id="maintainerComboBox" />
+    </GridPane>
+
+    <FlowPane alignment="CENTER_RIGHT" hgap="5">
+        <Button text="Dodaj" onAction="#onSaveClick" />
+        <Button text="Anuluj" onAction="#onCancelClick" />
+    </FlowPane>
+</VBox>

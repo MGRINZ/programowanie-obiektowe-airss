@@ -4,7 +4,7 @@ import com.example.projekt1.Model.Device;
 
 public class Smartphone extends Device {
 
-    private final String os;
+    private String os;
 
     public Smartphone(String manufacturer, String model, String os) {
         super(manufacturer, model);
@@ -14,5 +14,13 @@ public class Smartphone extends Device {
     @Override
     public String getDeviceType() {
         return "Smartfon";
+    }
+
+    public String getOs() {
+        return os;
+    }
+
+    public void setOs(String os) {
+        this.os = os;
     }
 }

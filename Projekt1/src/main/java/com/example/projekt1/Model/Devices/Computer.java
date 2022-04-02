@@ -32,7 +32,7 @@ public class Computer extends Device {
     }
 
     public String getDeviceType() {
-        return type;
+        return "Komputer";
     }
 
     public String getType() {

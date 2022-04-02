@@ -4,6 +4,7 @@ import com.example.projekt1.Model.ComputerService;
 import com.example.projekt1.Model.Maintainer;
 import com.example.projekt1.Model.Order;
 import com.example.projekt1.Views.AddOrderView;
+import com.example.projekt1.Views.EditOrderView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,7 +86,10 @@ public class ComputerServiceController implements Initializable {
         addOrderView.show();
     }
 
-    public void onEditClick(ActionEvent actionEvent) {
+    public void onEditClick(ActionEvent actionEvent) throws IOException {
+        Order order = orderTable.getSelectionModel().getSelectedItem();
+        EditOrderView editOrderView = new EditOrderView(order);
+        editOrderView.show();
     }
 
     @FXML

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class AddOrderView extends Stage {
 
     public AddOrderView() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/order-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/add-order-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         setMinWidth(640);
         setMinHeight(480);

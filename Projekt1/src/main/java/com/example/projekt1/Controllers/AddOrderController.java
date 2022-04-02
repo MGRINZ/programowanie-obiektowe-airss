@@ -1,85 +1,22 @@
 package com.example.projekt1.Controllers;
 
-import com.example.projekt1.Model.*;
+import com.example.projekt1.Model.Client;
+import com.example.projekt1.Model.Device;
 import com.example.projekt1.Model.Devices.Computer;
 import com.example.projekt1.Model.Devices.Printer;
 import com.example.projekt1.Model.Devices.Smartphone;
+import com.example.projekt1.Model.Order;
 import com.example.projekt1.Views.ComputerServiceView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
-import java.net.URL;
-import java.util.*;
-
-public class AddOrderController implements Initializable {
-
-    @FXML
-    public TextField clientFirstName;
-
-    @FXML
-    public TextField clientLastName;
-
-    @FXML
-    public TextField phoneNumber;
+public class AddOrderController extends AddEditOrderController {
 
     @FXML
     private ComboBox<String> deviceComboBox;
-
-    @FXML
-    public TextField manufacturer;
-
-    @FXML
-    public TextField model;
-
-    @FXML
-    public RowConstraints osRow;
-
-    @FXML
-    public Label osLabel;
-
-    @FXML
-    public TextField os;
-
-    @FXML
-    public CheckBox formatAllowed;
-
-    @FXML
-    public TextField type;
-
-    @FXML
-    public TextField problem;
-
-    @FXML
-    public ComboBox<Maintainer> maintainer;
-
-    private ComputerService computerService;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        maintainer.setConverter(new StringConverter<Maintainer>() {
-            @Override
-            public String toString(Maintainer maintainer) {
-                return maintainer.getName();
-            }
-
-            @Override
-            public Maintainer fromString(String s) {
-                return null;
-            }
-        });
-
-        computerService = ComputerService.getInstance();
-        ArrayList<Maintainer> maintainers = new ArrayList<>();
-        maintainers.add(Maintainer.NULL_MAINTAINER);
-        maintainers.addAll(computerService.getMaintainers());
-        maintainer.getItems().addAll(maintainers);
-        maintainer.setValue(maintainers.get(0));
-    }
 
     public void onDeviceChange(ActionEvent actionEvent) {
         String device = deviceComboBox.getValue();
@@ -97,10 +34,6 @@ public class AddOrderController implements Initializable {
         if(device.equals("Drukarka"))
             os.setDisable(true);
 
-    }
-
-    public void onCancelClick(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).close();
     }
 
     public void onSaveClick(ActionEvent actionEvent) {
@@ -190,9 +123,9 @@ public class AddOrderController implements Initializable {
                 device,
                 problem.getText().trim());
 
-        int maintainerIndex = maintainer.getSelectionModel().getSelectedIndex();
+        int maintainerIndex = maintainerComboBox.getSelectionModel().getSelectedIndex();
         if(maintainerIndex != 0)
-            order.setMaintainer(maintainer.getItems().get(maintainerIndex));
+            order.setMaintainer(maintainerComboBox.getItems().get(maintainerIndex));
 
         computerService.addOrder(order);
 

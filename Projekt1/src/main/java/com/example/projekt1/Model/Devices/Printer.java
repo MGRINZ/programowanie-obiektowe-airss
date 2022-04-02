@@ -4,7 +4,7 @@ import com.example.projekt1.Model.Device;
 
 public class Printer extends Device {
 
-    private final String type;
+    private String type;
 
     public Printer(String manufacturer, String model, String type) {
         super(manufacturer, model);
@@ -14,5 +14,13 @@ public class Printer extends Device {
     @Override
     public String getDeviceType() {
         return "Drukarka";
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
