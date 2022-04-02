@@ -3,15 +3,18 @@ package com.example.projekt1.Controllers;
 import com.example.projekt1.Model.ComputerService;
 import com.example.projekt1.Model.Maintainer;
 import com.example.projekt1.Model.Order;
+import com.example.projekt1.Views.AddOrderView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ComputerServiceController implements Initializable {
@@ -68,7 +71,42 @@ public class ComputerServiceController implements Initializable {
             });
         });
 
+        updateTable();
+    }
+
+    public void updateTable() {
         ComputerService computerService = ComputerService.getInstance();
         orderTable.getItems().setAll(computerService.getOrders());
+    }
+
+    public void onAddClick(ActionEvent actionEvent) throws IOException {
+        AddOrderView addOrderView = new AddOrderView();
+        addOrderView.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
+        addOrderView.show();
+    }
+
+    public void onEditClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onDeleteClick(ActionEvent actionEvent) {
+        Order order = orderTable.getSelectionModel().getSelectedItem();
+
+        if(order == null)
+            return;
+
+        ComputerService computerService = ComputerService.getInstance();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Potwierdź usunięcie zgłoszenia");
+        alert.setTitle("Usunięcie zgłoszenia");
+        alert.setContentText("Czy na pewno usunąć zgłoszenie?");
+        alert.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            computerService.removeOrder(order);
+            orderTable.getItems().remove(order);
+        }
     }
 }

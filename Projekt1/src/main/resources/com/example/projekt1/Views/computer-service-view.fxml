@@ -45,8 +45,8 @@
         </columns>
     </TableView>
     <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="5">
-        <Button text="Dodaj..." />
-        <Button text="Edytuj..."  />
-        <Button text="Usuń"  />
+        <Button text="Dodaj..." onAction="#onAddClick" />
+        <Button text="Edytuj..." onAction="#onEditClick" />
+        <Button text="Usuń" onAction="#onDeleteClick" />
     </VBox>
 </GridPane>

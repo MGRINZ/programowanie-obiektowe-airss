@@ -2,3 +2,12 @@
     -fx-max-width: "Infinity";
     -fx-max-height: "Infinity";
 }
+
+.text-field,
+.combo-box {
+    -fx-max-width: "Infinity";
+}
+
+.text-field.field-invalid {
+    -fx-text-box-border: red;
+}

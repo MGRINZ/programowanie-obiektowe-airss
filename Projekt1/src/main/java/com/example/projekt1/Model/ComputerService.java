@@ -96,4 +96,16 @@ public class ComputerService {
     public ArrayList<Order> getOrders() {
         return orders;
     }
+
+    public ArrayList<Maintainer> getMaintainers() {
+        return maintainers;
+    }
+
+    public void removeOrder(Order order) {
+        orders.remove(order);
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
 }
