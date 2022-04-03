@@ -3,10 +3,7 @@ package com.example.projekt1.Controllers;
 import com.example.projekt1.Model.ComputerService;
 import com.example.projekt1.Model.Maintainer;
 import com.example.projekt1.Model.Order;
-import com.example.projekt1.Views.AddOrderView;
-import com.example.projekt1.Views.ComputerServiceView;
-import com.example.projekt1.Views.EditOrderView;
-import com.example.projekt1.Views.HelpView;
+import com.example.projekt1.Views.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -143,7 +140,9 @@ public class ComputerServiceController implements Initializable {
     }
 
     @FXML
-    public void onManageMaintainersClick(ActionEvent actionEvent) {
-
+    public void onManageMaintainersClick(ActionEvent actionEvent) throws IOException {
+        ManageMaintainersView manageMaintainersView = new ManageMaintainersView();
+        manageMaintainersView.initOwner(stage);
+        manageMaintainersView.show();
     }
 }

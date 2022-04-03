@@ -143,7 +143,7 @@ public class EditOrderController extends AddEditOrderController {
         order.setProblem(problem.getText().trim());
 
         int maintainerIndex = maintainerComboBox.getSelectionModel().getSelectedIndex();
-        if(maintainerIndex != 0)
+        if(maintainerIndex > 0)
             order.setMaintainer(maintainerComboBox.getItems().get(maintainerIndex));
 
         order.setStatus(status.getValue());

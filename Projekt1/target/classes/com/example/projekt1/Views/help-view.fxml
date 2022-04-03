@@ -9,8 +9,7 @@
         xmlns:fx="http://javafx.com/fxml"
         fx:controller="com.example.projekt1.Controllers.HelpController"
         spacing="5"
-        alignment="TOP_CENTER"
-        prefHeight="100">
+        alignment="TOP_CENTER">
     <padding>
         <Insets topRightBottomLeft="10" />
     </padding>

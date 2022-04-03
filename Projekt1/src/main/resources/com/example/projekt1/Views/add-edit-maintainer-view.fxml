@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<VBox
+        xmlns="http://javafx.com/javafx"
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="com.example.projekt1.Controllers.AddEditMaintainerController"
+        spacing="5"
+        stylesheets="@../CSS/common.css">
+    <padding>
+        <Insets topRightBottomLeft="10" />
+    </padding>
+    <GridPane VBox.vgrow="ALWAYS" hgap="10" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label text="Imię" />
+        <TextField GridPane.columnIndex="1" fx:id="maintainerFirstName" />
+        <Label GridPane.rowIndex="1" text="Nazwisko" />
+        <TextField GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="maintainerLastName" />
+    </GridPane>
+    <FlowPane alignment="CENTER_RIGHT" hgap="5">
+        <Button text="Zapisz" onAction="#onSaveClick" />
+        <Button text="Anuluj" onAction="#onCancelClick" />
+    </FlowPane>
+</VBox>

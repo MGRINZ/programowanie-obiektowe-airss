@@ -17,7 +17,7 @@ public class HelpView extends Stage {
 
     public HelpView() throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/help-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         controller = fxmlLoader.getController();
         controller.setStage(this);
         setResizable(false);
