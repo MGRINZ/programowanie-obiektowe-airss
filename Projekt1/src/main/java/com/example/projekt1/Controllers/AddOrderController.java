@@ -13,85 +13,41 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class AddOrderController extends AddEditOrderController {
 
     @FXML
     private ComboBox<String> deviceComboBox;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
+        deviceType = deviceComboBox.getValue();
+    }
+
     public void onDeviceChange(ActionEvent actionEvent) {
-        String device = deviceComboBox.getValue();
+        deviceType = deviceComboBox.getValue();
 
         os.setDisable(false);
         formatAllowed.setDisable(false);
         type.setDisable(false);
 
-        if(!device.equals("Komputer"))
+        if(!deviceType.equals("Komputer"))
             formatAllowed.setDisable(true);
 
-        if(device.equals("Smartfon"))
+        if(deviceType.equals("Smartfon"))
             type.setDisable(true);
 
-        if(device.equals("Drukarka"))
+        if(deviceType.equals("Drukarka"))
             os.setDisable(true);
 
     }
 
     public void onSaveClick(ActionEvent actionEvent) {
 
-        boolean isValid = true;
-
-        clientFirstName.getStyleClass().remove("field-invalid");
-        if(clientFirstName.getText().isBlank()) {
-            clientFirstName.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-        clientLastName.getStyleClass().remove("field-invalid");
-        if(clientLastName.getText().isBlank()) {
-            clientLastName.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-        phoneNumber.getStyleClass().remove("field-invalid");
-        if(!phoneNumber.getText().matches("^(\\+\\d\\d)?\\d{9}$")) {
-            phoneNumber.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-        manufacturer.getStyleClass().remove("field-invalid");
-        if(manufacturer.getText().isBlank()) {
-            manufacturer.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-        model.getStyleClass().remove("field-invalid");
-        if(model.getText().isBlank()) {
-            model.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-
-        os.getStyleClass().remove("field-invalid");
-        if(deviceComboBox.getValue().equals("Komputer") || deviceComboBox.getValue().equals("Smartfon"))
-            if(os.getText().isBlank()) {
-                os.getStyleClass().add("field-invalid");
-                isValid = false;
-            }
-
-        type.getStyleClass().remove("field-invalid");
-        if(deviceComboBox.getValue().equals("Komputer") || deviceComboBox.getValue().equals("Drukarka"))
-            if(type.getText().isBlank()) {
-                type.getStyleClass().add("field-invalid");
-                isValid = false;
-            }
-
-        problem.getStyleClass().remove("field-invalid");
-        if(problem.getText().isBlank()) {
-            problem.getStyleClass().add("field-invalid");
-            isValid = false;
-        }
-
-        if(!isValid)
+        if(!validate())
             return;
 
         Device device = switch(deviceComboBox.getValue()) {

@@ -52,6 +52,8 @@ public class AddEditOrderController implements Initializable {
     @FXML
     public ComboBox<Maintainer> maintainerComboBox;
 
+    protected String deviceType;
+
     protected ComputerService computerService;
 
     @Override
@@ -78,5 +80,62 @@ public class AddEditOrderController implements Initializable {
 
     public void onCancelClick(ActionEvent actionEvent) {
         ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).close();
+    }
+
+    protected boolean validate() {
+        boolean isValid = true;
+
+        clientFirstName.getStyleClass().remove("field-invalid");
+        if(clientFirstName.getText().isBlank()) {
+            clientFirstName.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+        clientLastName.getStyleClass().remove("field-invalid");
+        if(clientLastName.getText().isBlank()) {
+            clientLastName.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+        phoneNumber.getStyleClass().remove("field-invalid");
+        if(!phoneNumber.getText().matches("^(\\+\\d\\d)?\\d{9}$")) {
+            phoneNumber.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+        manufacturer.getStyleClass().remove("field-invalid");
+        if(manufacturer.getText().isBlank()) {
+            manufacturer.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+        model.getStyleClass().remove("field-invalid");
+        if(model.getText().isBlank()) {
+            model.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+
+        os.getStyleClass().remove("field-invalid");
+        if(deviceType.equals("Komputer") || deviceType.equals("Smartfon"))
+            if(os.getText().isBlank()) {
+                os.getStyleClass().add("field-invalid");
+                isValid = false;
+            }
+
+        type.getStyleClass().remove("field-invalid");
+        if(deviceType.equals("Komputer") || deviceType.equals("Drukarka"))
+            if(type.getText().isBlank()) {
+                type.getStyleClass().add("field-invalid");
+                isValid = false;
+            }
+
+        problem.getStyleClass().remove("field-invalid");
+        if(problem.getText().isBlank()) {
+            problem.getStyleClass().add("field-invalid");
+            isValid = false;
+        }
+
+        return isValid;
     }
 }

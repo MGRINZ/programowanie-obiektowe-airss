@@ -8,7 +8,7 @@ public class Order {
     private final int number;
     private final Client client;
     private final Device device;
-    private final String problem;
+    private String problem;
     private Maintainer maintainer;
     private final Date dateIn;
     private Date dateOut;
@@ -41,6 +41,10 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+        if(status == OrderStatus.OUT)
+            dateOut = new Date();
+        else
+            dateOut = null;
     }
 
     public int getNumber() {
@@ -57,6 +61,10 @@ public class Order {
 
     public String getProblem() {
         return problem;
+    }
+
+    public void setProblem(String problem) {
+        this.problem = problem;
     }
 
     public Maintainer getMaintainer() {

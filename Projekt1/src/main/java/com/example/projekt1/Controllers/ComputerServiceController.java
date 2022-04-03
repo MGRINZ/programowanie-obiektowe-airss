@@ -88,7 +88,12 @@ public class ComputerServiceController implements Initializable {
 
     public void onEditClick(ActionEvent actionEvent) throws IOException {
         Order order = orderTable.getSelectionModel().getSelectedItem();
+
+        if(order == null)
+            return;
+
         EditOrderView editOrderView = new EditOrderView(order);
+        editOrderView.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
         editOrderView.show();
     }
 

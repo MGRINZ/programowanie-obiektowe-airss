@@ -55,10 +55,12 @@
         <TextField GridPane.rowIndex="9" GridPane.columnIndex="1" fx:id="problem" />
         <Label GridPane.rowIndex="10" text="Serwisant" />
         <ComboBox GridPane.rowIndex="10" GridPane.columnIndex="1" fx:id="maintainerComboBox" />
+        <Label GridPane.rowIndex="11" text="Status" />
+        <ComboBox GridPane.rowIndex="11" GridPane.columnIndex="1" fx:id="status" />
     </GridPane>
 
     <FlowPane alignment="CENTER_RIGHT" hgap="5">
-        <Button text="Dodaj" onAction="#onSaveClick" />
+        <Button text="Zapisz" onAction="#onSaveClick" />
         <Button text="Anuluj" onAction="#onCancelClick" />
     </FlowPane>
 </VBox>
