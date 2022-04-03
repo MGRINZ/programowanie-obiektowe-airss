@@ -6,7 +6,7 @@ import com.example.projekt1.Model.Devices.Smartphone;
 
 import java.util.ArrayList;
 
-public class ComputerService {
+public final class ComputerService {
 
     private static volatile ComputerService instance;
 

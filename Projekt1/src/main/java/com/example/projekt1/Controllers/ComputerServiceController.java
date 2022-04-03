@@ -4,13 +4,17 @@ import com.example.projekt1.Model.ComputerService;
 import com.example.projekt1.Model.Maintainer;
 import com.example.projekt1.Model.Order;
 import com.example.projekt1.Views.AddOrderView;
+import com.example.projekt1.Views.ComputerServiceView;
 import com.example.projekt1.Views.EditOrderView;
+import com.example.projekt1.Views.HelpView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +51,7 @@ public class ComputerServiceController implements Initializable {
     @FXML
     private TableColumn<Order, String> status;
 
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,17 +80,23 @@ public class ComputerServiceController implements Initializable {
         updateTable();
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     public void updateTable() {
         ComputerService computerService = ComputerService.getInstance();
         orderTable.getItems().setAll(computerService.getOrders());
     }
 
+    @FXML
     public void onAddClick(ActionEvent actionEvent) throws IOException {
         AddOrderView addOrderView = new AddOrderView();
-        addOrderView.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
+        addOrderView.initOwner(stage);
         addOrderView.show();
     }
 
+    @FXML
     public void onEditClick(ActionEvent actionEvent) throws IOException {
         Order order = orderTable.getSelectionModel().getSelectedItem();
 
@@ -93,7 +104,7 @@ public class ComputerServiceController implements Initializable {
             return;
 
         EditOrderView editOrderView = new EditOrderView(order);
-        editOrderView.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
+        editOrderView.initOwner(stage);
         editOrderView.show();
     }
 
@@ -110,12 +121,29 @@ public class ComputerServiceController implements Initializable {
         alert.setHeaderText("Potwierdź usunięcie zgłoszenia");
         alert.setTitle("Usunięcie zgłoszenia");
         alert.setContentText("Czy na pewno usunąć zgłoszenie?");
-        alert.initOwner(((Button)actionEvent.getSource()).getScene().getWindow());
+        alert.initOwner(stage);
 
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
             computerService.removeOrder(order);
             orderTable.getItems().remove(order);
         }
+    }
+
+    @FXML
+    public void onHelpClick(ActionEvent actionEvent) throws IOException {
+        HelpView helpView = new HelpView();
+        helpView.initOwner(stage);
+        helpView.show();
+    }
+
+    @FXML
+    public void onCloseClick(ActionEvent actionEvent) {
+        stage.close();
+    }
+
+    @FXML
+    public void onManageMaintainersClick(ActionEvent actionEvent) {
+
     }
 }

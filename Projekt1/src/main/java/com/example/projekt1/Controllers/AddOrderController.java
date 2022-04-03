@@ -9,9 +9,7 @@ import com.example.projekt1.Model.Order;
 import com.example.projekt1.Views.ComputerServiceView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -85,7 +83,6 @@ public class AddOrderController extends AddEditOrderController {
 
         computerService.addOrder(order);
 
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         ((ComputerServiceView)stage.getOwner()).updateTable();
         stage.close();
     }

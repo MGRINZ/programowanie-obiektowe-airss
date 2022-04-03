@@ -12,11 +12,14 @@ import java.io.IOException;
 
 public class EditOrderView extends Stage {
 
-    FXMLLoader fxmlLoader;
+    private final FXMLLoader fxmlLoader;
+    private final EditOrderController controller;
 
     public EditOrderView(Order order) throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/edit-order-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        controller = fxmlLoader.getController();
+        controller.setStage(this);
         ((EditOrderController)fxmlLoader.getController()).setOrder(order);
         setMinWidth(640);
         setMinHeight(480);

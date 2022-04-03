@@ -54,6 +54,8 @@ public class AddEditOrderController implements Initializable {
 
     protected String deviceType;
 
+    protected Stage stage;
+
     protected ComputerService computerService;
 
     @Override
@@ -78,61 +80,66 @@ public class AddEditOrderController implements Initializable {
         maintainerComboBox.setValue(maintainers.get(0));
     }
 
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
     public void onCancelClick(ActionEvent actionEvent) {
-        ((Stage)((Button)actionEvent.getSource()).getScene().getWindow()).close();
+        stage.close();
     }
 
     protected boolean validate() {
         boolean isValid = true;
+        final String FIELD_INVALID_CLASS = "field-invalid";
 
-        clientFirstName.getStyleClass().remove("field-invalid");
+        clientFirstName.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(clientFirstName.getText().isBlank()) {
-            clientFirstName.getStyleClass().add("field-invalid");
+            clientFirstName.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 
-        clientLastName.getStyleClass().remove("field-invalid");
+        clientLastName.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(clientLastName.getText().isBlank()) {
-            clientLastName.getStyleClass().add("field-invalid");
+            clientLastName.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 
-        phoneNumber.getStyleClass().remove("field-invalid");
+        phoneNumber.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(!phoneNumber.getText().matches("^(\\+\\d\\d)?\\d{9}$")) {
-            phoneNumber.getStyleClass().add("field-invalid");
+            phoneNumber.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 
-        manufacturer.getStyleClass().remove("field-invalid");
+        manufacturer.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(manufacturer.getText().isBlank()) {
-            manufacturer.getStyleClass().add("field-invalid");
+            manufacturer.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 
-        model.getStyleClass().remove("field-invalid");
+        model.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(model.getText().isBlank()) {
-            model.getStyleClass().add("field-invalid");
+            model.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 
 
-        os.getStyleClass().remove("field-invalid");
+        os.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(deviceType.equals("Komputer") || deviceType.equals("Smartfon"))
             if(os.getText().isBlank()) {
-                os.getStyleClass().add("field-invalid");
+                os.getStyleClass().add(FIELD_INVALID_CLASS);
                 isValid = false;
             }
 
-        type.getStyleClass().remove("field-invalid");
+        type.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(deviceType.equals("Komputer") || deviceType.equals("Drukarka"))
             if(type.getText().isBlank()) {
-                type.getStyleClass().add("field-invalid");
+                type.getStyleClass().add(FIELD_INVALID_CLASS);
                 isValid = false;
             }
 
-        problem.getStyleClass().remove("field-invalid");
+        problem.getStyleClass().remove(FIELD_INVALID_CLASS);
         if(problem.getText().isBlank()) {
-            problem.getStyleClass().add("field-invalid");
+            problem.getStyleClass().add(FIELD_INVALID_CLASS);
             isValid = false;
         }
 

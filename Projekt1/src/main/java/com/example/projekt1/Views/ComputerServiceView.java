@@ -10,11 +10,14 @@ import java.io.IOException;
 
 public class ComputerServiceView extends Stage {
 
-    FXMLLoader fxmlLoader;
+    private final FXMLLoader fxmlLoader;
+    private final ComputerServiceController controller;
 
     public ComputerServiceView() throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/computer-service-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        controller = fxmlLoader.getController();
+        controller.setStage(this);
         setMinWidth(800);
         setMinHeight(600);
         setTitle("Serwis komputerowy");
@@ -22,7 +25,6 @@ public class ComputerServiceView extends Stage {
     }
 
     public void updateTable() {
-        ComputerServiceController controller = fxmlLoader.getController();
         controller.updateTable();
     }
 }

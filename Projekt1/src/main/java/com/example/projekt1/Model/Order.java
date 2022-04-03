@@ -31,22 +31,6 @@ public class Order {
         return nextNumber++;
     }
 
-    public void setMaintainer(Maintainer maintainer) {
-        this.maintainer = maintainer;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-        if(status == OrderStatus.OUT)
-            dateOut = new Date();
-        else
-            dateOut = null;
-    }
-
     public int getNumber() {
         return number;
     }
@@ -71,11 +55,27 @@ public class Order {
         return maintainer;
     }
 
+    public void setMaintainer(Maintainer maintainer) {
+        this.maintainer = maintainer;
+    }
+
     public Date getDateIn() {
         return dateIn;
     }
 
     public Date getDateOut() {
         return dateOut;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+        if(status == OrderStatus.OUT)
+            dateOut = new Date();
+        else
+            dateOut = null;
     }
 }

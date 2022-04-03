@@ -5,14 +5,11 @@ import com.example.projekt1.Model.Devices.Computer;
 import com.example.projekt1.Model.Devices.Printer;
 import com.example.projekt1.Model.Devices.Smartphone;
 import com.example.projekt1.Views.ComputerServiceView;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.net.URL;
@@ -151,7 +148,6 @@ public class EditOrderController extends AddEditOrderController {
 
         order.setStatus(status.getValue());
 
-        Stage stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
         ((ComputerServiceView)stage.getOwner()).updateTable();
         stage.close();
     }
