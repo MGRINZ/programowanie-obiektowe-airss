@@ -2,8 +2,6 @@ package com.example.projekt1;
 
 import com.example.projekt1.Views.ComputerServiceView;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;

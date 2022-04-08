@@ -1,16 +1,23 @@
 package com.example.projekt1.Controllers;
 
-import com.example.projekt1.Model.ComputerService;
-import com.example.projekt1.Model.Maintainer;
-import com.example.projekt1.Model.Order;
-import com.example.projekt1.Views.*;
+import com.example.projekt1.Converters.OrderStatusStringConverter;
+import com.example.projekt1.Model.*;
+import com.example.projekt1.Model.Devices.Computer;
+import com.example.projekt1.Model.Devices.Printer;
+import com.example.projekt1.Model.Devices.Smartphone;
+import com.example.projekt1.Views.AddOrderView;
+import com.example.projekt1.Views.EditOrderView;
+import com.example.projekt1.Views.HelpView;
+import com.example.projekt1.Views.ManageMaintainersView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -48,6 +55,69 @@ public class ComputerServiceController implements Initializable {
     @FXML
     private TableColumn<Order, String> status;
 
+    @FXML
+    public GridPane detailsGrid;
+
+    @FXML
+    private Label detailsNumber;
+
+    @FXML
+    private Label detailsClient;
+
+    @FXML
+    private Label detailsPhone;
+
+    @FXML
+    private Label detailsMaintainer;
+
+    @FXML
+    private Label detailsDateIn;
+
+    @FXML
+    private Label detailsDateOut;
+
+    @FXML
+    private Label detailsStatus;
+
+    @FXML
+    public Label detailsTypeLabel;
+
+    @FXML
+    private Label detailsDevice;
+
+    @FXML
+    private Label detailsType;
+
+    @FXML
+    public Label detailsManufacturerLabel;
+
+    @FXML
+    private Label detailsManufacturer;
+
+    @FXML
+    public Label detailsModelLabel;
+
+    @FXML
+    private Label detailsModel;
+
+    @FXML
+    public Label detailsOSLabel;
+
+    @FXML
+    private Label detailsOS;
+
+    @FXML
+    public Label detailsFormatAllowedLabel;
+
+    @FXML
+    private Label detailsFormatAllowed;
+
+    @FXML
+    public Label detailsProblemLabel;
+
+    @FXML
+    private Label detailsProblem;
+
     private Stage stage;
 
     @Override
@@ -66,15 +136,103 @@ public class ComputerServiceController implements Initializable {
         dateIn.setCellValueFactory(new PropertyValueFactory<Order, Date>("dateIn"));
         dateOut.setCellValueFactory(new PropertyValueFactory<Order, Date>("dateOut"));
         status.setCellValueFactory(p -> {
-            return new ReadOnlyObjectWrapper<>(switch (p.getValue().getStatus()) {
-                case IN -> "Przyjęto";
-                case IN_SERVICE -> "W realizacji";
-                case READY -> "Do odbioru";
-                case OUT -> "Zakończone";
-            });
+            OrderStatusStringConverter converter = new OrderStatusStringConverter();
+            return new ReadOnlyObjectWrapper<>(converter.toString(p.getValue().getStatus()));
+        });
+
+        orderTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Order>() {
+            @Override
+            public void changed(ObservableValue<? extends Order> observableValue, Order oldOrder, Order newOrder) {
+                if(newOrder == null)
+                    return;
+
+                Client client = newOrder.getClient();
+
+                detailsNumber.setText(String.valueOf(newOrder.getNumber()));
+                detailsClient.setText(client.getName());
+                detailsPhone.setText(client.getPhoneNumber());
+                detailsDateIn.setText(newOrder.getDateIn().toString());
+
+                if(newOrder.getDateOut() != null)
+                    detailsDateOut.setText(newOrder.getDateOut().toString());
+                else
+                    detailsDateOut.setText("-");
+
+                Maintainer maintainer = newOrder.getMaintainer();
+                if(maintainer != null)
+                    detailsMaintainer.setText(newOrder.getMaintainer().getName());
+                else
+                    detailsMaintainer.setText("-");
+
+                OrderStatusStringConverter converter = new OrderStatusStringConverter();
+                detailsStatus.setText(converter.toString(newOrder.getStatus()));
+
+                Device device = newOrder.getDevice();
+                detailsDevice.setText(device.getDeviceType());
+                detailsManufacturer.setText(device.getManufacturer());
+                detailsModel.setText(device.getModel());
+
+                if(device instanceof Computer computer) {
+                    showComputerFields();
+                    detailsType.setText(computer.getType());
+                    detailsOS.setText(computer.getOs());
+                    detailsFormatAllowed.setText(computer.isFormatAllowed() ? "Tak" : "Nie");
+                } else if(device instanceof Smartphone smartphone) {
+                    showSmartphoneFields();
+                    detailsOS.setText(smartphone.getOs());
+                } else if(device instanceof Printer printer) {
+                    showPrinterFields();
+                    detailsType.setText(printer.getType());
+                }
+
+                detailsProblem.setText(newOrder.getProblem());
+            }
         });
 
         updateTable();
+    }
+
+    private void showComputerFields() {
+        GridPane.setRowIndex(detailsTypeLabel, 2);
+        GridPane.setRowIndex(detailsType, 2);
+        GridPane.setRowIndex(detailsManufacturerLabel, 3);
+        GridPane.setRowIndex(detailsManufacturer, 3);
+        GridPane.setRowIndex(detailsModelLabel, 4);
+        GridPane.setRowIndex(detailsModel, 4);
+        GridPane.setRowIndex(detailsOSLabel, 5);
+        GridPane.setRowIndex(detailsOS, 5);
+        GridPane.setRowIndex(detailsFormatAllowedLabel, 6);
+        GridPane.setRowIndex(detailsFormatAllowed, 6);
+        GridPane.setRowIndex(detailsProblemLabel, 7);
+        GridPane.setRowIndex(detailsProblem, 7);
+
+        detailsGrid.getStyleClass().setAll("computer-details");
+    }
+
+    private void showSmartphoneFields() {
+        GridPane.setRowIndex(detailsManufacturerLabel, 2);
+        GridPane.setRowIndex(detailsManufacturer, 2);
+        GridPane.setRowIndex(detailsModelLabel, 3);
+        GridPane.setRowIndex(detailsModel, 3);
+        GridPane.setRowIndex(detailsOSLabel, 4);
+        GridPane.setRowIndex(detailsOS, 4);
+        GridPane.setRowIndex(detailsProblemLabel, 5);
+        GridPane.setRowIndex(detailsProblem, 5);
+
+        detailsGrid.getStyleClass().setAll("smartphone-details");
+    }
+
+    private void showPrinterFields() {
+        GridPane.setRowIndex(detailsTypeLabel, 2);
+        GridPane.setRowIndex(detailsType, 2);
+        GridPane.setRowIndex(detailsManufacturerLabel, 3);
+        GridPane.setRowIndex(detailsManufacturer, 3);
+        GridPane.setRowIndex(detailsModelLabel, 4);
+        GridPane.setRowIndex(detailsModel, 4);
+        GridPane.setRowIndex(detailsProblemLabel, 5);
+        GridPane.setRowIndex(detailsProblem, 5);
+
+        detailsGrid.getStyleClass().setAll("printer-details");
     }
 
     public void setStage(Stage stage) {
@@ -98,6 +256,9 @@ public class ComputerServiceController implements Initializable {
         Order order = orderTable.getSelectionModel().getSelectedItem();
 
         if(order == null)
+            return;
+
+        if(order.getStatus() == OrderStatus.OUT)
             return;
 
         EditOrderView editOrderView = new EditOrderView(order);

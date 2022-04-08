@@ -1,5 +1,6 @@
 package com.example.projekt1.Controllers;
 
+import com.example.projekt1.Converters.OrderStatusStringConverter;
 import com.example.projekt1.Model.*;
 import com.example.projekt1.Model.Devices.Computer;
 import com.example.projekt1.Model.Devices.Printer;
@@ -10,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.util.StringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,27 +38,7 @@ public class EditOrderController extends AddEditOrderController {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
 
-        status.setConverter(new StringConverter<OrderStatus>() {
-            @Override
-            public String toString(OrderStatus orderStatus) {
-                return switch (orderStatus) {
-                    case IN -> "Przyjęto";
-                    case IN_SERVICE -> "W realizacji";
-                    case READY -> "Do odbioru";
-                    case OUT -> "Zakończone";
-                };
-            }
-
-            @Override
-            public OrderStatus fromString(String s) {
-                return switch (s) {
-                    default -> OrderStatus.IN;
-                    case "W realizacji" -> OrderStatus.IN_SERVICE;
-                    case "Do odbioru" -> OrderStatus.READY;
-                    case "Zakończone" -> OrderStatus.OUT;
-                };
-            }
-        });
+        status.setConverter(new OrderStatusStringConverter());
         status.getItems().setAll(OrderStatus.IN, OrderStatus.IN_SERVICE, OrderStatus.READY, OrderStatus.OUT);
     }
 
@@ -151,4 +131,5 @@ public class EditOrderController extends AddEditOrderController {
         ((ComputerServiceView)stage.getOwner()).updateTable();
         stage.close();
     }
+
 }

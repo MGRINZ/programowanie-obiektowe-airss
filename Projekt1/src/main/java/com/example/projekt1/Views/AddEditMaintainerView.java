@@ -2,7 +2,6 @@ package com.example.projekt1.Views;
 
 import com.example.projekt1.ComputerServiceApplication;
 import com.example.projekt1.Controllers.AddEditMaintainerController;
-import com.example.projekt1.Controllers.ManageMaintainersController;
 import com.example.projekt1.Model.Maintainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

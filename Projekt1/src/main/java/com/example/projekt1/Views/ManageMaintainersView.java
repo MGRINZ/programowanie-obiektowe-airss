@@ -1,7 +1,6 @@
 package com.example.projekt1.Views;
 
 import com.example.projekt1.ComputerServiceApplication;
-import com.example.projekt1.Controllers.ComputerServiceController;
 import com.example.projekt1.Controllers.ManageMaintainersController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

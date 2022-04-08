@@ -8,7 +8,7 @@
         xmlns="http://javafx.com/javafx"
         xmlns:fx="http://javafx.com/fxml"
         fx:controller="com.example.projekt1.Controllers.HelpController"
-        spacing="5"
+        spacing="10"
         alignment="TOP_CENTER">
     <padding>
         <Insets topRightBottomLeft="10" />
@@ -18,8 +18,34 @@
             -fx-font-size: 2em;
         </style>
     </Label>
-    <Text text="..." textAlignment="JUSTIFY" />
-    <Text text="..." textAlignment="JUSTIFY" />
-    <Text text="..." textAlignment="JUSTIFY" />
+    <Text textAlignment="JUSTIFY" wrappingWidth="800">
+        Główne okno programu przedstawia listę wszystkich zleceń. Zarządzanie zleceniami (odpowiednio dodawanie, edycja
+        i usuwanie) realizowane jest poprzez przyciski "Dodaj", "Edytuj" i "Usuń" po prawej stronie. W przypadku
+        operacji edycji lub usuwania, należy najpierw zaznaczyć wybrane zlecenie na liście, a następnie wcisnąć
+        odpowiedni przycisk.
+    </Text>
+    <Text textAlignment="JUSTIFY" wrappingWidth="800">
+        Przy dodawaniu zlecenia użytkownik proszony jest o wypełnienie formularza zawierającego szczegóły zlecenia.
+        Część wymaganych informacji zależy od wybranego rodzaju serwisowanego urządzenia. Pola nieistotne dla danego
+        przypadku pozostają niedostępne i nie są dalej interpretowane. Wszystkie pozostałe pola sa obowiązkowe. Ponadto
+        istotne jest wskazanie prawidłowego rodzaju serwisowanego urządzenia, gdyż po zatwierdzeniu zlecenia, nie ma
+        możliwości jego zmiany. Jeśli użytkownik popełnił błąd, konieczne jest usunięcie zlecenia i ponowne jego
+        utworzenie.
+    </Text>
+    <Text textAlignment="JUSTIFY" wrappingWidth="800">
+        Edycja zlecenia zapewnia możliwość wprowadzenia zmian w większości pól danych uzupełnionych na etapie
+        dodawania zlecenia. Dodatkowo obejmuje ona zmianę statusu zlecenia. Zmiana statusu na "Zakończone" uzupełnia
+        datę zakończenia zlecenia i uniemożliwia dalsze wprowadzanie edycji.
+    </Text>
+    <Text textAlignment="JUSTIFY" wrappingWidth="800">
+        Przy próbie usunięcia zlecenia, użytkownik proszony jest o potwierdzenie tego zamiaru. Dokonanie tej operacji
+        jest nieodwracalne.
+    </Text>
+    <Text textAlignment="JUSTIFY" wrappingWidth="800">
+        Program obsługuje również funkcję zarządzania serwisantami dostępną z poziomu menu
+        "Plik -> Zarządzaj serwisantami". Z poziomu nowo otwartego okna możliwe jest dodawanie serwisantów, edycja ich
+        danych oraz usuwanie. W przypadku dodawania i edycji danych, wszystkie wymagane informacje podaje się we
+        wskazanych polach formularza. Usunięcie serwisanta wymaga z kolei potwierdzenia tego zamiaru przez użytkownika.
+    </Text>
     <Button text="Zamknij" onAction="#onClose" />
 </VBox>

@@ -16,6 +16,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <VBox
         xmlns:fx="http://javafx.com/fxml"
         stylesheets="@../CSS/common.css"
@@ -24,6 +25,7 @@
         <Menu text="Plik">
             <MenuItem text="Dodaj..." onAction="#onAddClick" />
             <MenuItem text="Serwisanci..." onAction="#onManageMaintainersClick" />
+            <SeparatorMenuItem />
             <MenuItem text="Zamknij" onAction="#onCloseClick" />
         </Menu>
         <Menu text="Pomoc">
@@ -63,5 +65,45 @@
             <Button text="Edytuj..." onAction="#onEditClick" />
             <Button text="Usuń" onAction="#onDeleteClick" />
         </VBox>
+        <GridPane GridPane.rowIndex="2" hgap="10" vgap="10" fx:id="detailsGrid">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" />
+                <ColumnConstraints hgrow="ALWAYS" />
+                <ColumnConstraints hgrow="NEVER" />
+                <ColumnConstraints hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <Label GridPane.columnSpan="4" text="Szczegóły" />
+            <Label GridPane.rowIndex="1" text="Numer zlecenia:" />
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="1" text="-" fx:id="detailsNumber" />
+            <Label GridPane.rowIndex="2" text="Klient:" />
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="1" text="-" fx:id="detailsClient" />
+            <Label GridPane.rowIndex="3" text="Telefon:" />
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="1" text="-" fx:id="detailsPhone" />
+            <Label GridPane.rowIndex="4" text="Serwisant:" />
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="1" text="-" fx:id="detailsMaintainer" />
+            <Label GridPane.rowIndex="5" text="Data przyjęcia:" />
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="1" text="-" fx:id="detailsDateIn" />
+            <Label GridPane.rowIndex="6" text="Data wydania:" />
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="1" text="-" fx:id="detailsDateOut" />
+            <Label GridPane.rowIndex="7" text="Status:" />
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="1" text="-" fx:id="detailsStatus" />
+
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="2" text="Urządzenie:" />
+            <Label GridPane.rowIndex="1" GridPane.columnIndex="3" text="-" fx:id="detailsDevice" />
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="2" text="Rodzaj:" fx:id="detailsTypeLabel"/>
+            <Label GridPane.rowIndex="2" GridPane.columnIndex="3" text="-" fx:id="detailsType" />
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="2" text="Producent:" fx:id="detailsManufacturerLabel" />
+            <Label GridPane.rowIndex="3" GridPane.columnIndex="3" text="-" fx:id="detailsManufacturer" />
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="2" text="Model:" fx:id="detailsModelLabel" />
+            <Label GridPane.rowIndex="4" GridPane.columnIndex="3" text="-" fx:id="detailsModel" />
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="2" text="System:" fx:id="detailsOSLabel" />
+            <Label GridPane.rowIndex="5" GridPane.columnIndex="3" text="-" fx:id="detailsOS" />
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="2" text="Można formatować?:" fx:id="detailsFormatAllowedLabel" />
+            <Label GridPane.rowIndex="6" GridPane.columnIndex="3" text="-" fx:id="detailsFormatAllowed" />
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="2" text="Problem:" fx:id="detailsProblemLabel" />
+            <Label GridPane.rowIndex="7" GridPane.columnIndex="3" text="-" fx:id="detailsProblem" wrapText="true" />
+
+        </GridPane>
     </GridPane>
 </VBox>

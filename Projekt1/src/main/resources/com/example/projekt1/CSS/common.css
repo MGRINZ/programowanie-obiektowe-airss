@@ -11,3 +11,14 @@
 .text-field.field-invalid {
     -fx-text-box-border: red;
 }
+
+.smartphone-details #detailsFormatAllowedLabel,
+.smartphone-details #detailsFormatAllowed,
+.smartphone-details #detailsTypeLabel,
+.smartphone-details #detailsType,
+.printer-details #detailsFormatAllowedLabel,
+.printer-details #detailsFormatAllowed,
+.printer-details #detailsOSLabel,
+.printer-details #detailsOS {
+    visibility: hidden;
+}
