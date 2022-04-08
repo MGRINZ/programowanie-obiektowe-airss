@@ -17,13 +17,13 @@ public class EditOrderView extends Stage {
 
     public EditOrderView(Order order) throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/edit-order-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         controller = fxmlLoader.getController();
         controller.setStage(this);
         ((EditOrderController)fxmlLoader.getController()).setOrder(order);
         setMinWidth(640);
         setMinHeight(480);
-        setTitle("Edycja zgłoszenia");
+        setTitle("Edycja zlecenia");
         initModality(Modality.APPLICATION_MODAL);
         setScene(scene);
     }

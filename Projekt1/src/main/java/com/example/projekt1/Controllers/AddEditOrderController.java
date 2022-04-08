@@ -20,37 +20,37 @@ import java.util.ResourceBundle;
 public class AddEditOrderController implements Initializable {
 
     @FXML
-    public GridPane orderGrid;
+    protected GridPane orderGrid;
 
     @FXML
-    public TextField clientFirstName;
+    protected TextField clientFirstName;
 
     @FXML
-    public TextField clientLastName;
+    protected TextField clientLastName;
 
     @FXML
-    public TextField phoneNumber;
+    protected TextField phoneNumber;
 
     @FXML
-    public TextField manufacturer;
+    protected TextField manufacturer;
 
     @FXML
-    public TextField model;
+    protected TextField model;
 
     @FXML
-    public TextField os;
+    protected TextField os;
 
     @FXML
-    public CheckBox formatAllowed;
+    protected CheckBox formatAllowed;
 
     @FXML
-    public TextField type;
+    protected TextField type;
 
     @FXML
-    public TextField problem;
+    protected TextField problem;
 
     @FXML
-    public ComboBox<Maintainer> maintainerComboBox;
+    protected ComboBox<Maintainer> maintainerComboBox;
 
     protected String deviceType;
 
@@ -84,7 +84,8 @@ public class AddEditOrderController implements Initializable {
         this.stage = stage;
     }
 
-    public void onCancelClick(ActionEvent actionEvent) {
+    @FXML
+    private void onCancelClick(ActionEvent actionEvent) {
         stage.close();
     }
 

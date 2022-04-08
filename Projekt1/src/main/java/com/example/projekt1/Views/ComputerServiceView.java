@@ -15,7 +15,7 @@ public class ComputerServiceView extends Stage {
 
     public ComputerServiceView() throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/computer-service-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         controller = fxmlLoader.getController();
         controller.setStage(this);
         setMinWidth(800);

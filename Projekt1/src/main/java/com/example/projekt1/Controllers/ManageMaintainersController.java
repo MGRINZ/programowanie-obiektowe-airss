@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class ManageMaintainersController implements Initializable {
 
     @FXML
-    public ListView<Maintainer> maintainers;
+    private ListView<Maintainer> maintainers;
 
     private Stage stage;
     private ComputerService computerService;
@@ -52,20 +52,19 @@ public class ManageMaintainersController implements Initializable {
         this.stage = stage;
     }
 
-
     public void updateList() {
         maintainers.getItems().setAll(computerService.getMaintainers());
     }
 
     @FXML
-    public void onAddClick(ActionEvent actionEvent) throws IOException {
+    private void onAddClick(ActionEvent actionEvent) throws IOException {
         AddEditMaintainerView addEditMaintainerView = new AddEditMaintainerView();
         addEditMaintainerView.initOwner(stage);
         addEditMaintainerView.show();
     }
 
     @FXML
-    public void onEditClick(ActionEvent actionEvent) throws IOException {
+    private void onEditClick(ActionEvent actionEvent) throws IOException {
         int maintainerIndex = maintainers.getSelectionModel().getSelectedIndex();
 
         if(maintainerIndex == -1)
@@ -79,7 +78,7 @@ public class ManageMaintainersController implements Initializable {
     }
 
     @FXML
-    public void onDeleteClick(ActionEvent actionEvent) {
+    private void onDeleteClick(ActionEvent actionEvent) {
         int maintainerIndex = maintainers.getSelectionModel().getSelectedIndex();
 
         if(maintainerIndex == -1)

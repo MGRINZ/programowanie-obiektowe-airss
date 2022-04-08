@@ -21,16 +21,16 @@ public class EditOrderController extends AddEditOrderController {
     private Label deviceLabel;
 
     @FXML
-    public Label osLabel;
+    private Label osLabel;
 
     @FXML
-    public Label formatAllowedLabel;
+    private Label formatAllowedLabel;
 
     @FXML
-    public Label typeLabel;
+    private Label typeLabel;
 
     @FXML
-    public ComboBox<OrderStatus> status;
+    private ComboBox<OrderStatus> status;
 
     private Order order;
 
@@ -96,7 +96,8 @@ public class EditOrderController extends AddEditOrderController {
         status.setValue(order.getStatus());
     }
 
-    public void onSaveClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSaveClick(ActionEvent actionEvent) {
 
         if(!validate())
             return;

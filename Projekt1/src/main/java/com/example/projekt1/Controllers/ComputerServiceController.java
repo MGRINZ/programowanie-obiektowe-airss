@@ -56,7 +56,7 @@ public class ComputerServiceController implements Initializable {
     private TableColumn<Order, String> status;
 
     @FXML
-    public GridPane detailsGrid;
+    private GridPane detailsGrid;
 
     @FXML
     private Label detailsNumber;
@@ -80,7 +80,7 @@ public class ComputerServiceController implements Initializable {
     private Label detailsStatus;
 
     @FXML
-    public Label detailsTypeLabel;
+    private Label detailsTypeLabel;
 
     @FXML
     private Label detailsDevice;
@@ -89,31 +89,31 @@ public class ComputerServiceController implements Initializable {
     private Label detailsType;
 
     @FXML
-    public Label detailsManufacturerLabel;
+    private Label detailsManufacturerLabel;
 
     @FXML
     private Label detailsManufacturer;
 
     @FXML
-    public Label detailsModelLabel;
+    private Label detailsModelLabel;
 
     @FXML
     private Label detailsModel;
 
     @FXML
-    public Label detailsOSLabel;
+    private Label detailsOSLabel;
 
     @FXML
     private Label detailsOS;
 
     @FXML
-    public Label detailsFormatAllowedLabel;
+    private Label detailsFormatAllowedLabel;
 
     @FXML
     private Label detailsFormatAllowed;
 
     @FXML
-    public Label detailsProblemLabel;
+    private Label detailsProblemLabel;
 
     @FXML
     private Label detailsProblem;
@@ -245,21 +245,28 @@ public class ComputerServiceController implements Initializable {
     }
 
     @FXML
-    public void onAddClick(ActionEvent actionEvent) throws IOException {
+    private void onAddClick(ActionEvent actionEvent) throws IOException {
         AddOrderView addOrderView = new AddOrderView();
         addOrderView.initOwner(stage);
         addOrderView.show();
     }
 
     @FXML
-    public void onEditClick(ActionEvent actionEvent) throws IOException {
+    private void onEditClick(ActionEvent actionEvent) throws IOException {
         Order order = orderTable.getSelectionModel().getSelectedItem();
 
         if(order == null)
             return;
 
-        if(order.getStatus() == OrderStatus.OUT)
+        if(order.getStatus() == OrderStatus.OUT) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Nie można edytować zgłoszenia");
+            alert.setTitle("Edycja zgłoszenia");
+            alert.setContentText("Zgłoszenia o statusie \"Zakończone\" nie mogą być edytowane.");
+            alert.initOwner(stage);
+            alert.showAndWait();
             return;
+        }
 
         EditOrderView editOrderView = new EditOrderView(order);
         editOrderView.initOwner(stage);
@@ -267,7 +274,7 @@ public class ComputerServiceController implements Initializable {
     }
 
     @FXML
-    public void onDeleteClick(ActionEvent actionEvent) {
+    private void onDeleteClick(ActionEvent actionEvent) {
         Order order = orderTable.getSelectionModel().getSelectedItem();
 
         if(order == null)
@@ -289,19 +296,19 @@ public class ComputerServiceController implements Initializable {
     }
 
     @FXML
-    public void onHelpClick(ActionEvent actionEvent) throws IOException {
+    private void onHelpClick(ActionEvent actionEvent) throws IOException {
         HelpView helpView = new HelpView();
         helpView.initOwner(stage);
         helpView.show();
     }
 
     @FXML
-    public void onCloseClick(ActionEvent actionEvent) {
+    private void onCloseClick(ActionEvent actionEvent) {
         stage.close();
     }
 
     @FXML
-    public void onManageMaintainersClick(ActionEvent actionEvent) throws IOException {
+    private void onManageMaintainersClick(ActionEvent actionEvent) throws IOException {
         ManageMaintainersView manageMaintainersView = new ManageMaintainersView();
         manageMaintainersView.initOwner(stage);
         manageMaintainersView.show();

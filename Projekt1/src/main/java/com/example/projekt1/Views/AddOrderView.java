@@ -16,12 +16,12 @@ public class AddOrderView extends Stage {
 
     public AddOrderView() throws IOException {
         fxmlLoader = new FXMLLoader(ComputerServiceApplication.class.getResource("Views/add-order-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load());
         controller = fxmlLoader.getController();
         controller.setStage(this);
         setMinWidth(640);
         setMinHeight(480);
-        setTitle("Dodawanie zgłoszenia");
+        setTitle("Dodawanie zlecenia");
         initModality(Modality.APPLICATION_MODAL);
         setScene(scene);
     }

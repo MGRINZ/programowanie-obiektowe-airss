@@ -1,6 +1,7 @@
 package com.example.projekt1.Controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
 public class HelpController {
@@ -11,7 +12,8 @@ public class HelpController {
         this.stage = stage;
     }
 
-    public void onClose(ActionEvent actionEvent) {
+    @FXML
+    private void onClose(ActionEvent actionEvent) {
         stage.close();
     }
 }

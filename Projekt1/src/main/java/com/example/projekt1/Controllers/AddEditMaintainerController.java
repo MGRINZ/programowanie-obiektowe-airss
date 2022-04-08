@@ -15,10 +15,10 @@ import java.util.ResourceBundle;
 public class AddEditMaintainerController implements Initializable {
 
     @FXML
-    public TextField maintainerFirstName;
+    private TextField maintainerFirstName;
 
     @FXML
-    public TextField maintainerLastName;
+    private TextField maintainerLastName;
 
     private Stage stage;
     private ComputerService computerService;
@@ -61,7 +61,7 @@ public class AddEditMaintainerController implements Initializable {
     }
 
     @FXML
-    public void onSaveClick(ActionEvent actionEvent) {
+    private void onSaveClick(ActionEvent actionEvent) {
 
         if(!validate())
             return;
@@ -85,7 +85,7 @@ public class AddEditMaintainerController implements Initializable {
     }
 
     @FXML
-    public void onCancelClick(ActionEvent actionEvent) {
+    private void onCancelClick(ActionEvent actionEvent) {
         stage.close();
     }
 }

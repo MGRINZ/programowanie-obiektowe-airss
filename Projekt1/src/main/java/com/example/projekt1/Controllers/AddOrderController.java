@@ -25,7 +25,8 @@ public class AddOrderController extends AddEditOrderController {
         deviceType = deviceComboBox.getValue();
     }
 
-    public void onDeviceChange(ActionEvent actionEvent) {
+    @FXML
+    private void onDeviceChange(ActionEvent actionEvent) {
         deviceType = deviceComboBox.getValue();
 
         os.setDisable(false);
@@ -43,7 +44,8 @@ public class AddOrderController extends AddEditOrderController {
 
     }
 
-    public void onSaveClick(ActionEvent actionEvent) {
+    @FXML
+    private void onSaveClick(ActionEvent actionEvent) {
 
         if(!validate())
             return;
